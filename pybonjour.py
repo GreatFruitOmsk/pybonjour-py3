@@ -1116,9 +1116,9 @@ def DNSServiceRegister(
             type=type(txtRecord)))
 
     if not txtRecord:
-        txtLen, txtRecord = 1, '\0'
-    else:
-        txtLen, txtRecord = _string_to_length_and_void_p(txtRecord)
+        txtRecord = b'\0'
+
+    txtLen, txtRecord = _string_to_length_and_void_p(txtRecord)
 
     @_DNSServiceRegisterReply
     def _callback(sdRef, flags, errorCode, name, regtype, domain, context):
